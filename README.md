@@ -1,14 +1,64 @@
-Génère un README.md professionnel en anglais pour mon projet blog-cms-api, avec les spécifications suivantes.
+# blog-cms-api
 
-**Stack technique** : Django 4.2, Django REST Framework, PostgreSQL, JWT, Docker, pytest.
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
+![Django](https://img.shields.io/badge/Django-4.2-green?logo=django)
+![DRF](https://img.shields.io/badge/DRF-3.14-red)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue?logo=postgresql)
+![Docker](https://img.shields.io/badge/Docker-ready-blue?logo=docker)
+![pytest](https://img.shields.io/badge/tested%20with-pytest-yellow)
 
-**Sections à inclure** (dans cet ordre) :
-1.  **Badges** : Affiche des badges pour Python, Django, Docker et PostgreSQL (tu peux utiliser des badges standards de shields.io).
-2.  **Description** : Une phrase ou deux maximum, expliquant ce qu'est l'API.
-3.  **Fonctionnalités** : Une liste courte et percutante des principales capacités de l'API (gestion des articles, catégories, tags, commentaires, authentification JWT, etc.).
-4.  **Démarrage rapide** : Les étapes minimales pour cloner le dépôt et lancer le projet avec Docker Compose.
-5.  **Tableau des points d'accès (Endpoints)** : Présente les principaux endpoints de l'API sous forme de tableau (Méthode, Endpoint, Description, Authentification requise).
-6.  **Tableau des variables d'environnement** : Liste les variables nécessaires (ex: `SECRET_KEY`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, etc.) avec une brève description.
-7.  **Auteur** : Hezekiah Topan — avec un lien vers ton profil GitHub : github.com/Heresia517
+REST API for a Blog CMS — built with Django REST Framework, 
+JWT authentication, PostgreSQL and Docker.
 
-**Format** : Markdown propre, bien structuré, avec une longueur maximale de 80 lignes.
+## Features
+
+- CRUD for Posts, Categories, Tags and Comments
+- JWT authentication (access + refresh tokens)
+- Auto-generated slugs for Posts, Categories and Tags
+- Comment moderation (approve/reject)
+- Pagination on all list endpoints
+- Fully containerized with Docker Compose
+
+## Quick Start
+```bash
+git clone https://github.com/Heresia517/blog-cms-api.git
+cd blog-cms-api
+cp .env.example .env
+docker-compose up --build
+```
+
+API available at: `http://localhost:8000/api/`
+
+## API Endpoints
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | /api/token/ | No | Get JWT tokens |
+| POST | /api/token/refresh/ | No | Refresh access token |
+| GET | /api/posts/ | No | List published posts |
+| POST | /api/posts/ | Yes | Create a post |
+| GET | /api/posts/{slug}/ | No | Get post detail |
+| PUT | /api/posts/{slug}/ | Yes | Update a post |
+| DELETE | /api/posts/{slug}/ | Yes | Delete a post |
+| GET | /api/categories/ | No | List categories |
+| GET | /api/tags/ | No | List tags |
+| GET | /api/posts/{id}/comments/ | No | List comments |
+| POST | /api/posts/{id}/comments/ | Yes | Add a comment |
+
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| SECRET_KEY | Django secret key | required |
+| DEBUG | Debug mode | False |
+| DB_NAME | Database name | blog_cms |
+| DB_USER | Database user | postgres |
+| DB_PASSWORD | Database password | required |
+| DB_HOST | Database host | db |
+| DB_PORT | Database port | 5432 |
+
+## Author
+
+**Hezekiah Topan**
+- GitHub: [Heresia517](https://github.com/Heresia517)
+- LinkedIn: [hezekiah-topan](https://linkedin.com/in/hezekiah-topan)
